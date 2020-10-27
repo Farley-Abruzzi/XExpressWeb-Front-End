@@ -1,0 +1,50 @@
+#navPosition {
+    position: fixed;
+    width: 100%;
+    z-index: 9998;
+}
+
+#naApComp {
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 90px;
+}
+
+#subItem {
+    height: 2em;
+}
+
+#borderBox {
+    margin-top: 2%;
+    border-top: solid rgb(90, 206, 79) 0.05em;
+    padding: 1.3em;
+}
+
+#borderContent {
+    margin-top: 2%;
+    border-top: solid rgb(79, 187, 206) 0.05em;
+    text-align: center;
+    padding: 1.3em;
+}
+
+#titulo {
+    font-weight: bold;
+}
+
+#borderGrid {
+    border-bottom: solid rgb(79, 187, 206) 1px;
+    padding: 0px;
+}
+
+label {
+    color: rgb(22, 49, 80);
+    font-weight: 600;
+}
+
+#footer {
+    position: fixed;
+    bottom: 0px;
+    text-align: center;
+    width: 100%;
+    border: none;
+}

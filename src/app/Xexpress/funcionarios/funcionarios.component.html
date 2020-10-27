@@ -1,0 +1,98 @@
+<div class="card" id="borderBox">
+    <div class="card-header text-success bg-light">
+        <b>Gerenciamento de funcionários</b>
+        <button style="float: right;" type="submit" class="btn btn-danger btn-sm" title="Fechar" routerLink="/contribuintes"><i class="far fa-times-circle"></i></button>
+    </div>
+
+    <div class="row card-body text-dark">
+        <form class="col-md-12" #form="ngForm">
+            <!--Apelido do form para validação essas tags ngForm ngModel são devido a importação FormsModule no app.module.ts-->
+            <label>Pesquisar por nome completo:</label>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label class="sr-only">Nome do funcionário</label>
+                    <input type="text" class="form-control" [(ngModel)]="nome" name="nome" />
+                </div>
+                <div class="form-group col-md-2">
+                    <button type="submit" class="btn btn-success mx-sm-3 mb-2" style="background: none; background-color: #0abe19;" title="Pesquisar" (click)="buscarFuncionario()"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+            <label [style.visibility]="isVisible ? 'visible' : 'hidden'" class="mx-sm-3" style="font-weight: bold; color: red; ">Funcionário não encontrado</label>
+        </form>
+    </div>
+    <hr class="bg-light">
+    <div class="row card-body">
+        <div class="col-md-12">
+            <form #form="ngForm">
+
+                <div class="form-row">
+
+                    <div class="form-group col-md-6">
+                        <label for="inputNome">Nome</label>
+                        <input type="text" class="form-control" [(ngModel)]="objFuncionario.nome" name="nome">
+                    </div>
+
+
+                    <div class="form-group col-md-1">
+                        <label for="inputComplemento">Sexo</label>
+                        <input type="text" class="form-control" [(ngModel)]="objFuncionario.observacoes" name="observacoes">
+                    </div>
+
+                    <div class="form-group col-md-5">
+                        <label for="inputComplemento">Email</label>
+                        <input type="email" class="form-control" [(ngModel)]="objFuncionario.observacoes" name="observacoes">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEndereco">Logradouro (Rua. Av.)</label>
+                        <input type="text" class="form-control" [(ngModel)]="objFuncionario.endereco" name="endereco">
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="inputNumero">Numero</label>
+                        <input type="text" class="form-control" [(ngModel)]="objFuncionario.numero" name="numero">
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="inputComplemento">Complemento</label>
+                        <input type="text" class="form-control" [(ngModel)]="objFuncionario.complemento" name="compelmento">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputTelefone">Telefone</label>
+                        <input type="text" class="form-control" [(ngModel)]="objFuncionario.telefone" name="telefone">
+                    </div>
+
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="inputBairro">Bairro</label>
+                        <input type="text" class="form-control" [(ngModel)]="objFuncionario.bairro" name="bairro">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputCidade">Cidade</label>
+                        <input type="text" class="form-control" [(ngModel)]="objFuncionario.cidade" name="cidade">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputEstado">Estado</label>
+                        <input type="text" class="form-control" [(ngModel)]="objFuncionario.uf" name="uf">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputCep">CEP</label>
+                        <input type="text" class="form-control" [(ngModel)]="objFuncionario.cep" name="cep">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-8" rowspan="7">
+                        <label for="inputObs">Observação:</label>
+                        <textarea type="text" class="form-control" [(ngModel)]="objFuncionario.observacoes" name="observacoes"></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success" title="Salvar alterações"><i class="fas fa-save"></i> Salvar</button>
+                <button type="submit" class="btn btn-danger mx-sm-2" title="Remover"><i class="fas fa-trash-alt"></i> Limpar</button>
+            </form>
+        </div>
+
+    </div>

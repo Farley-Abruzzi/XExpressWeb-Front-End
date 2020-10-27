@@ -1,0 +1,63 @@
+<div class="card" id="borderBox">
+
+    <div class="card-header text-success bg-light">
+        <b>Reprocessamento por mensageiro</b>
+        <button style="float: right;" type="submit" class="btn btn-danger btn-sm" title="Fechar" routerLink="/home"><i class="far fa-times-circle"></i></button>
+    </div><br>
+
+    <div class="card-body text-dark">
+
+        <div class="form-row">
+
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success" style="bottom: 0px; position: absolute;" title="Pesquisar">
+                    <i class="fas fa-sync-alt"></i><i class="fas fa-long-arrow-alt-right mx-sm-3"></i><i class="fas fa-motorcycle"></i> Reprocessar todos os recibos </button>
+            </div>
+
+            <div class="col-md-3" style="text-align: right;">
+                <label style="font-weight: bolder;">Quantidade de recibos:</label>
+                <label style="font-weight: bolder;" class="mx-sm-2 text-primary">{{totalQuantRecibos}}</label>
+
+            </div>
+
+            <div class="col-md-3" style="text-align: center;">
+
+                <label style="font-weight: bolder;">Total de recibos: </label>
+                <label style="font-weight: bolder;" class="mx-sm-2 text-primary">{{totalValorRecibos | currency:'BRL':true }}</label>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="card-body text-dark">
+        <table class="table table-striped">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Mensageiro</th>
+                    <th style="text-align: center;" scope="col">Quantidade</th>
+                    <th scope="col">Valor - R$</th>
+
+                </tr>
+            </thead>
+            <tbody class="table-sm">
+                <tr *ngFor="let reprocessamento of objReprocessamento">
+                    <td>
+                        <a class="btn btn-success text-white" title="Reprocessar os recibos deste mensageiro" (click)="getApiDbPutRecibosReprocessar(reprocessamento.codmensageiro,reprocessamento.nome)">
+                            <i class="fas fa-sync-alt"></i><i class="fas fa-long-arrow-alt-right mx-sm-3"></i><i class="fas fa-motorcycle"></i>
+                        </a>
+                    </td>
+                    <td scope="row">{{reprocessamento.nome}}</td>
+                    <td style="text-align: center">{{reprocessamento.quantidadeRecibos}}</td>
+                    <td>{{reprocessamento.valorRecibos | currency:'BRL':true}}</td>
+
+
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+
+</div>

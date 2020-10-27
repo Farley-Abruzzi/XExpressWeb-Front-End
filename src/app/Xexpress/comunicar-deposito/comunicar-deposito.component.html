@@ -1,0 +1,80 @@
+<div class="card" id="borderBox">
+    <div class="card-header text-success">
+        <b>Comunicar Depósito</b>
+
+    </div>
+
+    <div class="card-body text-dark">
+
+        <div style="background: none; background-color: #192035;" class="card text-center col-md-2 col-sm-12">
+            <label style="color: white;"><strong>Comunicado de Depósito</strong></label>
+            <p style="color: white;">Olá (Nome), antes de iniciar observe o seguinte:</p>
+            <p style="color: white;">-> Você precisa ter impresso o resumo do dia.</p>
+            <p style="color: white;">-> Ter os comprovantes dos depósitos em mãos.</p>
+            <p style="color: white;">-> Se tiver despesa, precisa da nota de despesa.</p>
+        </div>
+        <br>
+        <div style="background: none; background-color: #192035;" class="card col-md-2 col-sm-12">
+            <p style="color: white;">1º Passo: Informe a data do recebimento</p>
+        </div>
+
+        <div class="form-group col-md-2 col-sm-12">
+            <label for="inputData">Data</label>
+            <ejs-datepicker placeholder='Data Deposito' [(value)]='dtDeposito' (change)="selectDtDeposito(dtDeposito)" format='dd-MM-yyyy'></ejs-datepicker>
+        </div>
+
+        <br>
+
+        <div style="background: none; background-color: #192035;" class="card col-md-2 col-sm-12">
+            <p style="color: white;">2º Passo: Clique na entidade, e observe se os valores estão estão de acordo com o resumo que você imprimiu.</p>
+        </div>
+        <br>
+        <div>
+            <select type="text" name="entidade" [(ngModel)]="entidade" (change)="selectByEntity(entidade)">
+            <option ngValue="Hospital do Cancer de Uberlandia">Hospital do Cancêr de Uberlândia</option>
+            </select>
+        </div>
+
+        <br>
+
+        <div style="background: none; background-color: #192035;" class="card col-md-2 col-sm-12">
+            <p style="color: white;">Você tem ( ) recibos em aberto e ( ) recebidos. Para alcançar a meta de 95% (1388) é necessário o recebimento ( ) recibos. <br>Porcentagem de recebimento = ( ) <br>Recibos devolvidos = ( ) <br>Fique atento a devolução, ela pode interfirir
+                no seu percentual.
+            </p>
+        </div>
+        <br>
+        <br>
+
+        <div style="background: none; background-color: #192035;" class="card col-md-2 col-sm-12">
+            <p style="color: white;">3º Passo: Informe o código de validação que foi impresso no final do resumo.</p>
+        </div>
+        <br>
+        <div>
+            <input type="number" name="codvalidacao" [(ngModel)]="codvalidacao" (change)="selectByCodValidacao(codvalidacao)">
+        </div>
+        <br>
+        <br>
+
+        <div style="background: none; background-color: #192035;" class="card col-md-2 col-sm-12">
+            <p style="color: white;">Caso tenha alguma despesa autorizada, favor informar nos campos abaixo.</p>
+        </div>
+        <br>
+        <br>
+        <div>
+            <label for="valorDespesa">Valor despesa:</label><br>
+            <input type="number" name="valorDespesa" [(ngModel)]="valorDespesa" (change)="selectByValorDespesa(valorDespesa)">
+        </div>
+        <br>
+
+        <div>
+            <label for="valorDespesa">Descrição despesa:</label><br>
+            <input type="text" name="detalhamentoDespesa" [(ngModel)]="detalhamentoDespesa" (change)="selectByDetailDespesa(detalhamentoDespesa)">
+        </div>
+
+        <div style="margin-top: 10%;">
+            <button (click)="salvar()" class="btn btn-success btn-small">Comunicar</button>
+        </div>
+
+    </div>
+
+</div>

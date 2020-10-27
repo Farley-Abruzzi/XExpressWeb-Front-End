@@ -1,0 +1,102 @@
+<div class="card" id="borderBox">
+
+    <div class="card-header text-success bg-light">
+        <b>Cadastro de feriados</b>
+        <button style="float: right;" type="submit" class="btn btn-danger btn-sm" title="Fechar" routerLink="/home"><i class="far fa-times-circle"></i></button>
+    </div>
+
+
+    <div class="row card-body">
+        <div class="col-md-12">
+            <form [formGroup]="formFeriado">
+
+                <div class="form-row">
+
+                    <div class="form-group col-md-2">
+                        <label for="inputEstado">Estado</label>
+                        <select name="estado" class="form-control" (change)="selectById(estado)" formControlName="estado" [(ngModel)]="estado">
+                            <option *ngFor="let item of estados" value="{{item.nome}}">{{item.nome}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label for="inputCidade">Cidade</label>
+                        <select name="cidade" class="form-control" formControlName="cidade" [(ngModel)]="cidade">
+                            <option *ngFor="let item of cidades" value="{{item.nome}}">{{item.nome}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-2 mx-sm-4">
+                        <label for="inputDataFim">Data do feriado</label>
+                        <ejs-datepicker placeholder='Escolha a data' format='dd-MM-yyyy' name="dtFeriado" formControlName="dtFeriado"></ejs-datepicker>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <label for="inputObs">Descrição do feriado:</label>
+                        <textarea type="text" class="form-control" name="observacoes" formControlName="observacoes"></textarea>
+
+
+                    </div>
+                    <div class="form-group col-md-4 mx-sm-4">
+                        <br><label style="margin-top: 5px;" for="inputCidade">Repetir feriado nos anos seguintes</label><br>
+                        <div class="custom-control custom-radio custom-control-inline mx-sm-5">
+                            <input type="radio" id="radioSim" name="replicar" class="custom-control-input" [value]="1" formControlName="replicar">
+                            <label class="custom-control-label text-success" id="option" for="radioSim">Sim</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="radioNao" name="replicar" class="custom-control-input" [value]="0" formControlName="replicar">
+                            <label class="custom-control-label text-danger" id="option" for="radioNao">Não</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <button type="submit" class="btn btn-success" style="background: none; background-color: #0abe19;" title="Salvar alterações" (click)="btnSalvar()"><i class="fas fa-save"></i> Salvar</button>
+                        <button type="submit" class="btn btn-danger mx-sm-2" title="Limpar formulário" (click)="limparCampos()"><i class="fas fa-trash-alt"></i> Limpar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-12" id="borderBox">
+            <table class="table table-borderless table-striped ">
+                <thead class="table-primary">
+                    <tr>
+
+                        <th scope="col">Feriado</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Cidade</th>
+                        <th scope="col">Data</th>
+                        <th id="center" scope="col">Replicar</th>
+                        <th id="center">Editar</th>
+                        <th id="center">Excluir</th>
+
+                    </tr>
+                </thead>
+                <tbody class="table-sm">
+                    <tr *ngFor="let item of listFeriados">
+                        <th scope="row">{{item.descricao}}</th>
+                        <td>{{item.estado}} </td>
+                        <td>{{item.cidade}}</td>
+                        <td>{{item.dataferiado | date: 'dd/MM/yyyy'}}</td>
+                        <td [ngSwitch]="item.replicar" id="center">
+                            <label *ngSwitchCase="1">Sim</label>
+                            <label *ngSwitchCase="0">Não</label>
+                        </td>
+                        <td id="center">
+                            <a class="btn btn-success text-white" style="background: none; background-color: #0abe19;" title="Editar" (click)="editar(item)">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                        <td id="center">
+                            <a class="btn btn-danger text-white" title="Excluir" (click)="btnExcluir(item)">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

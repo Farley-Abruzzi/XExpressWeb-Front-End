@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>X Express</title>
+    <base href="/">
+    <!--P/ as rotas funcionarem precisa dessa tag e de importar as configurações de rota no app.module-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="/src/favicon.ico">
+
+
+    <link href="https://cdn.syncfusion.com/ej2/ej2-base/styles/material.css" rel="stylesheet" />
+    <link href="https://cdn.syncfusion.com/ej2/ej2-buttons/styles/material.css" rel="stylesheet" />
+    <link href="https://cdn.syncfusion.com/ej2/ej2-inputs/styles/material.css" rel="stylesheet" />
+    <link href="https://cdn.syncfusion.com/ej2/ej2-popups/styles/material.css" rel="stylesheet" />
+    <link href="https://cdn.syncfusion.com/ej2/ej2-calendars/styles/material.css" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <script src="https://kit.fontawesome.com/65c4531dfe.js"></script>
+
+</head>
+<!--ebfafc,7eb5bd-->
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info" id="navPosition">
+        <a class="menu-btn text-light"><i class="fas fa-bars" style="margin-right: 5%"></i> Menu</a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Contribuintes
+          </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/contribuintes">Lista - contribuintes</a>
+                        <a class="dropdown-item" href="/pesquisarContrib">Pesquisar</a>
+                        <div class="dropdown-divider"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div style="width:15%; ">
+            <form class="input-group">
+                <input class="form-control " type="text" placeholder="Pesquisar" aria-label="Search">
+                <div class="input-group-append">
+                    <span class="input-group-text" id="basic-text1"><i class="fas fa-search text-grey"
+              aria-hidden="true"></i></span>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <!-- Pushy Menu -->
+    <nav class="pushy pushy-left" data-focus="#first-link">
+        <div class="pushy-content">
+            <ul>
+                <!--
+              <li class="pushy-submenu">
+              <button id="first-link">Contribuinte</button>
+              <ul>
+                
+                <li class="pushy-submenu">
+                  <button>Sub-Submenu 1</button>
+                  <ul>
+                    <li class="pushy-link"><a href="#">Item 1</a></li>
+                    <li class="pushy-link"><a href="#">Item 2</a></li>
+                  </ul>
+                </li>
+                <li class="pushy-submenu">
+                  <button>Sub-Submenu 2</button>
+                  <ul>
+                    <li class="pushy-link"><a href="#">Item 1</a></li>
+                    <li class="pushy-link"><a href="#">Item 2</a></li>
+                  </ul>
+                </li>
+                <li class="pushy-link"><a href="#">Item 1</a></li>
+                <li class="pushy-link"><a href="#">Item 2</a></li>
+              </ul>
+            </li>-->
+                <li class="pushy-link" id="homea"><a href="/home"><i class="fas fa-home" style="margin-right: 1em;"></i> HOME</a></li>
+                <li id="contrib" class="pushy-submenu">
+                    <button><i class="fas fa-blender-phone" style="margin-right: 1.2em;"></i>Contribuintes</button>
+                    <ul>
+                        <li class="pushy-link" id="subItem"><a href="/contribuintes"><i class="far fa-circle"
+                  style="margin-right: 1em; font-size: 60%"></i>Gerenciar contribuinte</a></li>
+                        <li class="pushy-link" id="subItem"><a href="/pesquisarContrib"><i class="far fa-circle"
+                  style="margin-right: 1em; font-size: 60%;"></i>Contribuinte/histórico</a></li>
+                        <li class="pushy-link"><a href="/cadastrocontrib"><i class="far fa-circle"
+                    style="margin-right: 1em; font-size: 60%;"></i>Cadastrar combribuinte</a></li>
+                    </ul>
+                </li>
+                <li id="mensageiro" class="pushy-submenu">
+                    <button><i class="fas fa-motorcycle" style="margin-right: 1.2em;"></i>Mensageiro</button>
+                    <ul>
+                        <li class="pushy-link" id="subItem"><a href="/resumoMensageiro"><i class="far fa-circle"
+                  style="margin-right: 1em; font-size: 60%;"></i>Resumo mensageiro</a></li>
+                        <li class="pushy-link" id="subItem"><a href="#"><i class="far fa-circle"
+                  style="margin-right: 1em; font-size: 60%;"></i>Recebidos mensageiro</a></li>
+                        <li class="pushy-link"><a href="#"><i class="far fa-circle"
+                  style="margin-right: 1em; font-size: 60%;"></i>Recibos reimpressos</a></li>
+                    </ul>
+                </li>
+
+                <li id="mensageiro" class="pushy-submenu">
+                    <button><i class="fas fa-address-book" style="margin-right: 1.2em;"></i>Gerenciamento</button>
+                    <ul>
+                        <li class="pushy-link" id="subItem"><a href="/feriados"><i class="far fa-circle"
+                style="margin-right: 1em; font-size: 60%;"></i>Feriados</a></li>
+                        <li class="pushy-link" id="subItem"><a href="#"><i class="far fa-circle"
+                style="margin-right: 1em; font-size: 60%;"></i>Dados Entidades</a></li>
+                        <li class="pushy-link" id="subItem"><a href="#"><i class="far fa-circle"
+                style="margin-right: 1em; font-size: 60%;"></i>Fechamento Mês</a></li>
+                        <li class="pushy-link"><a href="/usuario"><i class="far fa-circle"
+                style="margin-right: 1em; font-size: 60%;"></i>Usuarios</a></li>
+                    </ul>
+                </li>
+
+                <li id="relatorio" class="pushy-submenu">
+                    <button><i class="fas fa-chart-line" style="margin-right: 1.2em;"></i>Relatorios</button>
+                    <ul>
+                        <li class="pushy-link" id="subItem"><a href="#"><i class="far fa-circle"
+                  style="margin-right: 1em; font-size: 60%;"></i>Depositos</a></li>
+                        <li class="pushy-link" id="subItem"><a href="#"><i class="far fa-circle"
+                  style="margin-right: 1em; font-size: 60%;"></i>Outros</a></li>
+                        <li class="pushy-link"><a href="#"><i class="far fa-circle"
+                  style="margin-right: 1em; font-size: 60%;"></i>Outros</a></li>
+                    </ul>
+                </li>
+
+                <li id="reprocessamento" class="pushy-link"><a href="/reprocessamento"><i class="fas fa-percent"
+              style="margin-right: 1.2em;"></i>Reprocessamento</a></li>
+                <li id="perfil" class="pushy-link"><a href="#"><i class="fas fa-address-card" style="margin-right: 1.2em;"></i>Perfil de
+            usuário</a></li>
+
+                <li id="painel" class="pushy-link"><a href="/other"><i class="fas fa-th" style="margin-right: 1.2em;"></i>Painel Administrativo</a></li>
+                <li id="sair" class="pushy-link"><a href="#"><i class="fas fa-sign-out-alt" style="margin-right: 1.2em;"></i>Sair</a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Site Overlay -->
+    <div class="site-overlay"></div>
+
+    <!-- Your Content -->
+    <header>
+        <app-root></app-root>
+    </header>
+
+    <footer text-center class="site-footer">GLPV - Developed by Eliseu-Macedo</footer>
+
+
+<script type="text/javascript" src="runtime.js"></script><script type="text/javascript" src="es2015-polyfills.js" nomodule></script><script type="text/javascript" src="polyfills.js"></script><script type="text/javascript" src="styles.js"></script><script type="text/javascript" src="scripts.js"></script><script type="text/javascript" src="vendor.js"></script><script type="text/javascript" src="main.js"></script></body>
+
+</html>

@@ -1,0 +1,30 @@
+<div class="wrapper fadeInDown">
+    <!-- [@routerTransition] -->
+    <div id="formContent">
+        <!-- Tabs Titles -->
+
+        <!-- Icon -->
+
+
+        <div style="padding: 10%">
+            <i class="fas fa-sign-in-alt" style="margin-right: 2%"></i><span> Entre com seu usuário e senha</span>
+        </div>
+
+        <!-- Login Form -->
+        <form>
+
+            <input type="text" name="email" [(ngModel)]="creds.email" class="fadeIn second" placeholder="Usuário">
+
+            <input type="password" name="password" [(ngModel)]="creds.password" class="fadeIn third" placeholder="Senha">
+
+            <input type="submit" class="fadeIn fourth" value="Acessar" (click)="login()">
+
+
+        </form>
+
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+            <a class="underlineHover" href="#">Recuperar senha</a>
+        </div>
+    </div>
+</div>

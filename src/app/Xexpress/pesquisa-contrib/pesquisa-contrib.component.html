@@ -1,0 +1,235 @@
+<div class="card" id="borderBox">
+    <div class="card-header text-success bg-light">
+        <b>Pesquisa de contribuintes</b>
+        <button style="float: right;" type="submit" class="btn btn-danger btn-sm" title="Fechar" routerLink="/contribuintes"><i class="far fa-times-circle"></i></button>
+    </div>
+
+    <div class="card-body text-dark">
+
+        <label>Id do contribuinte</label>
+
+        <form class="form-inline" #form="ngForm">
+            <!--Apelido do form para validação essas tags ngForm ngModel são devido a importação FormsModule no app.module.ts-->
+            <div class="form-group mb-2">
+                <label class="sr-only">ID do contribuinte</label>
+                <input type="text" class="form-control" [(ngModel)]="idContrib" name="idContrib" />
+            </div>
+            <button type="submit" class="btn btn-success mx-sm-3 mb-2" style="background: none; background-color: #0abe19;" title="Pesquisar" (click)="getApiDbID()"><i
+          class="fas fa-search"></i></button>
+            <label [style.visibility]="isVisible ? 'visible' : 'hidden'" class="mx-sm-3" style="font-weight: bold; color: red; ">Contribuinte não encontrado</label>
+        </form>
+        <br>
+        <hr class="bg-light">
+    </div>
+    <div class="row card-body">
+        <div class="col-md-6">
+            <form #form="ngForm">
+
+                <div class="form-row" [style.visibility]="btMaisParcelas ? 'visible' : 'hidden'">
+                    <div class="form-group col-md-12" [ngSwitch]="contribuinte.status">
+                        <label for="inputNome" id="status">STATUS: </label>
+                        <label for="inputNome" id="status" class="mx-sm-3 text-primary" *ngSwitchCase="'ATIVO'">Contribuinte ativo</label>
+                        <label for="inputNome" id="status" class="mx-sm-3 text-danger" *ngSwitchCase="'CANCELADO'">Contribuinte cancelado</label>
+                        <label for="inputNome" id="status" class="mx-sm-3 text-danger" *ngSwitchCase="'INATIVO - NAO TELEFONAR MAIS'">Contribuinte inativo - Não ligar</label>
+                        <label for="inputNome" id="status" class="mx-sm-3 text-danger" *ngSwitchCase="'INATIVO - MUDOU-SE'">Contribuinte inativo - Mudou de endereço</label>
+                        <label for="inputNome" id="status" class="mx-sm-3 text-danger" *ngSwitchCase="'INATIVO - FALECEU'">Contribuinte inativo - Faleceu</label>
+                        <label for="inputNome" id="status" class="mx-sm-3 text-primary" *ngSwitchCase="'NAO ENCONTRADO'">Contribuinte ativo, porém não encontrado</label>
+                        <label for="inputNome" id="status" class="mx-sm-3 text-danger" *ngSwitchCase="'INATIVO - CADASTRO DUPLO'">Contribuinte inativo - Cadastro duplicado</label>
+                        <label for="inputNome" id="status" class="mx-sm-3 text-primary" *ngSwitchCase="'NAO DOA'">Contribuinte ativo, porém não é doador</label>
+                        <label for="inputNome" id="status" class="mx-sm-3 text-warning" *ngSwitchCase="'REMARCADO'">Contribuinte remarcado</label>
+                    </div>
+                </div>
+                <div class="form-row">
+
+                    <div class="form-group col-md-6">
+                        <label for="inputNome">Nome</label>
+                        <input type="text" class="form-control" [(ngModel)]="contribuinte.nomenorecibo" name="nome">
+                    </div>
+
+
+                    <div class="form-group col-md-1">
+                        <label for="inputSexo">Sexo</label>
+                        <input type="text" class="form-control" [(ngModel)]="contribuinte.sexo" name="sexo">
+                    </div>
+
+                    <div class="form-group col-md-5">
+                        <label for="inputEmail4">Email</label>
+                        <input type="email" class="form-control" [(ngModel)]="contribuinte.contribemail" name="contribemail">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEndereco">Logradouro (Rua. Av.)</label>
+                        <input type="text" class="form-control" [(ngModel)]="contribuinte.enderecoprincipal" name="enderecoprincipal">
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="inputAddress2">Numero</label>
+                        <input type="text" class="form-control" [(ngModel)]="contribuinte.numeroprincipal" name="numeroprincipal">
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="inputComplemento">Complemento</label>
+                        <input type="text" class="form-control" [(ngModel)]="contribuinte.compleprincipal" name="compelmentoPrincipal">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputTelefone">Telefone</label>
+                        <input type="text" class="form-control" [(ngModel)]="contribuinte.telefoneprincipal" name="telefoneprincipal">
+                    </div>
+
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="inputBairro">Bairro</label>
+                        <input type="text" class="form-control" [(ngModel)]="contribuinte.bairroprincipal" name="bairroprincipal">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputCidade">Cidade</label>
+                        <input type="text" class="form-control" [(ngModel)]="contribuinte.cidadeprincipal" name="cidadeprincipal">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputEstado">Estado</label>
+                        <input type="text" class="form-control" [(ngModel)]="contribuinte.ufprincipal" name="ufprincipal">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputCep">CEP</label>
+                        <input type="text" class="form-control" [(ngModel)]="contribuinte.cepprincipal" name="cepprincipal">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12" rowspan="7">
+                        <label for="inputObs">Observação:</label>
+                        <textarea type="text" class="form-control" [(ngModel)]="contribuinte.observacoes" name="observacoes"></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success" style="background: none; background-color: #0abe19;" title="Salvar alterações"><i class="fas fa-save"></i> Salvar</button>
+                <button type="submit" class="btn btn-danger mx-sm-2" title="Remover"><i class="fas fa-trash-alt"></i> Limpar</button>
+            </form>
+            <br>
+            <br>
+            <div class="form-row text-dark col-md-16" [style.visibility]="isVisible ? 'visible' : 'hidden'">
+                <table class="table table-striped table-hover">
+                    <thead class="table-primary">
+                        <tr>
+                            <th scope="col">Código</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Telefone</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="ultContrib" class="table-sm">
+                        <tr>
+                            <th scope="row">{{ultContrib.codcontrib}}</th>
+                            <td>{{ultContrib.nomenorecibo}}</td>
+                            <td>{{ultContrib.telefoneprincipal}}</td>
+                            <td>
+                                <a class="btn btn-success text-white" [routerLink]="['/gerarrecibo', ultContrib.codcontrib, ultContrib.codmensageiro]" title="Selecione">
+                                    Gerar recibo
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-6 table-responsive" style="padding: 1.3em; border-left: 1px solid rgb(38, 144, 163);">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Nº Parcela</th>
+                        <th scope="col">Vencimento</th>
+                        <th scope="col">Parcela</th>
+                        <th scope="col">Valor - R$</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Recebido</th>
+                        <th scope="col">Mensageiro</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let recibos of recibos.content  | slice:0:[n];" class="table-sm">
+                    <tr>
+                        <th scope="row">{{recibos.nrorecibo}}</th>
+                        <td>{{recibos.dtcobranca}}</td>
+                        <td>{{recibos.parcela}}</td>
+                        <td>{{recibos.valorgerado | number : '1.2'}}</td>
+                        <td [ngSwitch]="recibos.statusrec">
+                            <label *ngSwitchCase="'B'">Recebido</label>
+                            <label *ngSwitchCase="'C'">Cancelado</label>
+                            <label *ngSwitchCase="'D'">Devolvido</label>
+                            <label *ngSwitchCase="'G'">Em aberto</label>
+                        </td>
+                        <td>{{recibos.dtbaixa}}</td>
+                        <td title="{{recibos.nomedomensageiro}}">{{recibos.nomedomensageirofirst}}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <button [style.visibility]="btMaisParcelas ? 'visible' : 'hidden'" type="submit" class="btn btn-outline-success mx-sm-3" title="Remover" (click)="carregarParcelas()"><i class="fas fa-chevron-circle-down"></i> Mais parcelas</button>
+            <!-- Button to Open the Modal -->
+            <button [style.visibility]="btMaisParcelas ? 'visible' : 'hidden'" type="button" class="btn btn-success" style="background: none; background-color: #0abe19;" data-toggle="modal" data-target="#mdParcelas">
+                    <i class="fas fa-stream"></i>
+        Historico de parcelas
+      </button>
+        </div>
+
+    </div>
+
+</div><br>
+
+<!-- The Modal -->
+<div class="modal fade" id="mdParcelas">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content text-dark">
+
+            <!-- Modal Header -->
+            <div class="modal-header " style="margin-top: 3em; ">
+                <h5 class="modal-title ">Parcelas anteriores</h5>
+                <button type="button " class="close " data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <div class="table" style="padding: 0.9em; border: 2px solid success; border-radius: 1em;">
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nº Parcela</th>
+                                <th scope="col">Vencimento</th>
+                                <th scope="col">Parcela</th>
+                                <th scope="col">Valor - R$</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Recebido</th>
+                                <th scope="col">Mensageiro</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let recibos of recibos.content  | slice:0:50;" class="table-sm">
+                            <tr>
+                                <th scope="row">{{recibos.nrorecibo}}</th>
+                                <td>{{recibos.dtcobranca}}</td>
+                                <td>{{recibos.parcela}}</td>
+                                <td>{{recibos.valorgerado | number : '1.2'}}</td>
+                                <td [ngSwitch]="recibos.statusrec">
+                                    <label *ngSwitchCase="'B'">Recebido</label>
+                                    <label *ngSwitchCase="'C'">Cancelado</label>
+                                    <label *ngSwitchCase="'D'">Devolvido</label>
+                                    <label *ngSwitchCase="'G'">Em aberto</label>
+                                </td>
+                                <td>{{recibos.dtbaixa}}</td>
+                                <td title="{{recibos.nomedomensageiro}}">{{recibos.nomedomensageirofirst}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer ">
+                    <button type="button " class="btn btn-success" style="background: none; background-color: #0abe19;" data-dismiss="modal">Fechar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>

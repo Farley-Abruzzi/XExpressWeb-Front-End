@@ -1,0 +1,103 @@
+  <div class="container">
+
+    <div class="">
+      <nav id="menu" class="nav">
+        <ul>
+          <li>
+            <a href="#">
+              <span class="icon">
+                <i aria-hidden="true" class="fas fa-home"></i>
+              </span>
+              <span>Inicio</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="icon">
+                <i aria-hidden="true" class="fas fa-bars"></i>
+              </span>
+              <span>Menu</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <span class="icon">
+                <i aria-hidden="true" class="fas fas fa-motorcycle"></i>
+              </span>
+              <span>Mensageiro</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="icon">
+                <i aria-hidden="true" class="fas fa-percent"></i>
+              </span>
+              <span>Relatórios</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="icon">
+                <i aria-hidden="true" class="fas fa-address-card"></i>
+              </span>
+              <span>Perfil</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="icon">
+                <i aria-hidden="true" class="fas fa-sign-out-alt"></i>
+              </span>
+              <span>Sair</span>
+            </a>
+          </li>
+        </ul>
+        <a class="menu-btn text-light"><i class="fas fa-bars" style="margin-right: 5%"></i> Menu</a>
+      </nav>
+    </div>
+  </div><!-- /container -->
+  <script>
+    //  The function to change the class
+    var changeClass = function (r, className1, className2) {
+      var regex = new RegExp("(?:^|\\s+)" + className1 + "(?:\\s+|$)");
+      if (regex.test(r.className)) {
+        r.className = r.className.replace(regex, ' ' + className2 + ' ');
+      }
+      else {
+        r.className = r.className.replace(new RegExp("(?:^|\\s+)" + className2 + "(?:\\s+|$)"), ' ' + className1 + ' ');
+      }
+      return r.className;
+    };
+
+    //  Creating our button in JS for smaller screens
+    var menuElements = document.getElementById('menu');
+    menuElements.insertAdjacentHTML('afterBegin', '<button type="button" id="menutoggle" class="navtoogle" aria-hidden="true"><i aria-hidden="true" class="icon-menu"> </i> Menu</button>');
+
+    //  Toggle the class on click to show / hide the menu
+    document.getElementById('menutoggle').onclick = function () {
+      changeClass(this, 'navtoogle active', 'navtoogle');
+    }
+
+    // http://tympanus.net/codrops/2013/05/08/responsive-retina-ready-menu/comment-page-2/#comment-438918
+    document.onclick = function (e) {
+      var mobileButton = document.getElementById('menutoggle'),
+        buttonStyle = mobileButton.currentStyle ? mobileButton.currentStyle.display : getComputedStyle(mobileButton, null).display;
+
+      if (buttonStyle === 'block' && e.target !== mobileButton && new RegExp(' ' + 'active' + ' ').test(' ' + mobileButton.className + ' ')) {
+        changeClass(mobileButton, 'navtoogle active', 'navtoogle');
+      }
+    }
+  </script>
+
+
+
+=======================menu side===============
+
+        <li style="text-align: right;"><a href="#"><i class="fas fa-home"></i></a></li>
+        <li style="text-align: right;"><a href="#"><i class="fas fa-blender-phone"></i></a></li>
+        <li style="text-align: right;"><a href="#"><i class="fas fas fa-motorcycle"></i></a></li>  
+        <li style="text-align: right;"><a href="#"><i class="fas fa-chart-line"></i></a></li>
+        <li style="text-align: right;"><a href="#"><i class="fas fa-percent"></i></a></li>
+        <li style="text-align: right;"><a href="#"><i class="fas fa-address-card"></i></a></li>
+        <li style="text-align: right;"><a href="#"><i class="fas fa-sign-out-alt"></i></a></li>

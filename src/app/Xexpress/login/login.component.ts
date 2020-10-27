@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.auth.authenticate(this.creds)
       .subscribe(resp => {
-        console.log(resp.headers.get('Authorization'));
+        this.auth.successfullLogin(resp.headers.get('Authorization'));
         this.router.navigate(['/home']);
         alert('Login realizado!');
       },
@@ -32,3 +32,4 @@ export class LoginComponent implements OnInit {
   }
 
 }
+

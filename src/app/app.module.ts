@@ -28,6 +28,7 @@ import { ComunicarDepositoComponent } from './Xexpress/comunicar-deposito/comuni
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
 import { AuthService } from './api/auth.service';
+import { StorageService } from './api/storage.services';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { AuthService } from './api/auth.service';
     ApiDbService,
     DatePipe,
     ErrorInterceptorProvider,
-    AuthService
+    AuthService,
+    StorageService
   ],
   bootstrap: [AppComponent]
 })

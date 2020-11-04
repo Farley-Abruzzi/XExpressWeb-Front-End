@@ -18,35 +18,44 @@ import { RecebidoDiaComponent } from './Xexpress/recebido-dia/recebido-dia.compo
 import { RelatorioDiarioComponent } from './Xexpress/relatorio-diario/relatorio-diario.component';
 import { ComunicarDepositoComponent } from './Xexpress/comunicar-deposito/comunicar-deposito.component';
 import { FuncionariosComponent } from './Xexpress/funcionarios/funcionarios.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
-  {path: 'contribuintes', component: ContribuintesComponent},
-  {path: 'pesquisarContrib', component: PesquisaContribComponent},
-  {path: 'pesquisarContrib/editar/:id', component: PesquisaContribComponent},
-  {path: 'resumoMensageiro', component: ResumomensageiroComponent},
-  {path: 'home', component: StartComponent},
-  {path: 'other', component: OthersComponent},
-  {path: 'feriados', component: FeriadosComponent},
-  {path: 'funcionarios', component: FuncionariosComponent},
-  {path: 'reprocessamento', component: ReprocessamentoComponent},
-  {path: 'cadastrocontrib', component: CadastrocontribComponent},
-  {path: 'gerarrecibo/:id/:codmens', component: GerarreciboComponent},
-  {path: 'recibos-por-mensageiro', component: RecibosPorMensageiroComponent},
-  {path: 'recibos-reimpressos', component: RecibosReimpressosComponent},
-  {path: 'relacao-de-depositos', component: RelacaoDeDepositosComponent},
-  {path: 'recebido-mensageiro', component: RecebidoMensageiroComponent},
-  {path: 'recebido-dia', component: RecebidoDiaComponent},
-  {path: 'relatorio-diario', component: RelatorioDiarioComponent},
-  {path: 'comunicar-deposito', component: ComunicarDepositoComponent}
+  {
+    path: '',
+    component: StartComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: 'login', component: LoginComponent },
+  //{path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: 'contribuintes', component: ContribuintesComponent, canActivate: [AuthGuard]},
+  {path: 'pesquisarContrib', component: PesquisaContribComponent, canActivate: [AuthGuard]},
+  {path: 'pesquisarContrib/editar/:id', component: PesquisaContribComponent, canActivate: [AuthGuard]},
+  {path: 'resumoMensageiro', component: ResumomensageiroComponent, canActivate: [AuthGuard]},
+  {path: 'home', component: StartComponent, canActivate: [AuthGuard]},
+  {path: 'other', component: OthersComponent, canActivate: [AuthGuard]},
+  {path: 'feriados', component: FeriadosComponent, canActivate: [AuthGuard]},
+  {path: 'funcionarios', component: FuncionariosComponent, canActivate: [AuthGuard]},
+  {path: 'reprocessamento', component: ReprocessamentoComponent, canActivate: [AuthGuard]},
+  {path: 'cadastrocontrib', component: CadastrocontribComponent, canActivate: [AuthGuard]},
+  {path: 'gerarrecibo/:id/:codmens', component: GerarreciboComponent, canActivate: [AuthGuard]},
+  {path: 'recibos-por-mensageiro', component: RecibosPorMensageiroComponent, canActivate: [AuthGuard]},
+  {path: 'recibos-reimpressos', component: RecibosReimpressosComponent, canActivate: [AuthGuard]},
+  {path: 'relacao-de-depositos', component: RelacaoDeDepositosComponent, canActivate: [AuthGuard]},
+  {path: 'recebido-mensageiro', component: RecebidoMensageiroComponent, canActivate: [AuthGuard]},
+  {path: 'recebido-dia', component: RecebidoDiaComponent, canActivate: [AuthGuard]},
+  {path: 'relatorio-diario', component: RelatorioDiarioComponent, canActivate: [AuthGuard]},
+  {path: 'comunicar-deposito', component: ComunicarDepositoComponent, canActivate: [AuthGuard]},
+
+  // otherwise redirect to home
+  //{ path: '**', redirectTo: '' },
+];
   /*
   {path: 'produtos/editar/:id', component: ProdutoFormComponent},
   {path: '', redirectTo: '/produtos', pathMatch: 'full'}*/
-];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule {}
+  @NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+  })
+  export class AppRoutingModule {}

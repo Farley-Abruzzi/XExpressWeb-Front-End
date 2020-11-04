@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http'; //importar http para utilizar api
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; //importar http para utilizar api
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,9 +26,11 @@ import { RecebidoDiaComponent } from './Xexpress/recebido-dia/recebido-dia.compo
 import { RelatorioDiarioComponent } from './Xexpress/relatorio-diario/relatorio-diario.component';
 import { ComunicarDepositoComponent } from './Xexpress/comunicar-deposito/comunicar-deposito.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
 import { AuthService } from './api/auth.service';
-import { StorageService } from './api/storage.services';
+// import { StorageService } from './api/storage.services';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { ErrorInterceptor } from './helpers/error.interceptor';
+import { AuthGuard } from './guards/auth.guard';
 
 
 @NgModule({
@@ -70,9 +72,12 @@ import { StorageService } from './api/storage.services';
   providers: [
     ApiDbService,
     DatePipe,
-    ErrorInterceptorProvider,
+    //ErrorInterceptorProvider,
     AuthService,
-    StorageService
+    AuthGuard,
+    //StorageService
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
